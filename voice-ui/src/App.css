@@ -1,0 +1,77 @@
+import { useState } from "react";
+import {
+  LiveKitRoom,
+  VoiceAssistantControlBar,
+  RoomAudioRenderer,
+} from "@livekit/components-react";
+import "@livekit/components-styles";
+
+const serverUrl = "wss://my-voice-agnet-8s42tqg9.livekit.cloud";
+
+async function getToken() {
+  const response = await fetch("http://localhost:8000/token");
+  const data = await response.json();
+  return data.token;
+}
+
+export default function App() {
+  const [token, setToken] = useState(null);
+  const [connecting, setConnecting] = useState(false);
+
+  async function handleConnect() {
+    setConnecting(true);
+    const t = await getToken();
+    setToken(t);
+    setConnecting(false);
+  }
+
+  return (
+    <div style={{
+      minHeight: "100vh",
+      background: "#0f0f0f",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      fontFamily: "sans-serif",
+      color: "white"
+    }}>
+      <h1 style={{ fontSize: "2rem", marginBottom: "1rem" }}>
+        🎙️ Voice Assistant
+      </h1>
+      <p style={{ color: "#888", marginBottom: "2rem" }}>
+        Click below to talk to the AI agent
+      </p>
+
+      {!token ? (
+        <button
+          onClick={handleConnect}
+          disabled={connecting}
+          style={{
+            padding: "14px 32px",
+            fontSize: "1rem",
+            background: connecting ? "#444" : "#6c63ff",
+            color: "white",
+            border: "none",
+            borderRadius: "8px",
+            cursor: connecting ? "not-allowed" : "pointer"
+          }}
+        >
+          {connecting ? "Connecting..." : "Start Conversation"}
+        </button>
+      ) : (
+        <LiveKitRoom
+          token={token}
+          serverUrl={serverUrl}
+          connect={true}
+          audio={true}
+          video={false}
+          style={{ width: "100%", maxWidth: "400px" }}
+        >
+          <RoomAudioRenderer />
+          <VoiceAssistantControlBar />
+        </LiveKitRoom>
+      )}
+    </div>
+  );
+}

@@ -29,18 +29,20 @@ async def entrypoint(ctx: JobContext):
             model="llama-3.3-70b-versatile"
         ),
         tts=deepgram.TTS(
-            api_key=os.getenv("DEEPGRAM_API_KEY")
+            api_key=os.getenv("DEEPGRAM_API_KEY"),
+            model="aura-2-thalia-en",
         ),
     )
 
     await session.start(
         room=ctx.room,
         agent=Agent(instructions=(
-            "You are a friendly voice assistant. "
-            "First greet the user warmly. "
-            "Then ask for their name. "
-            "Then ask what they need help with. "
-            "Once you have both, confirm and say goodbye."
+    "You are a friendly voice assistant who can help with anything. "
+    "First greet the user warmly. "
+    "Then ask for their name. "
+    "Then help them with whatever they need — answer questions, provide information, have a conversation. "
+    "Do NOT say goodbye or end the conversation unless the user explicitly says goodbye or bye. "
+    "Keep responses SHORT and CONCISE — maximum 2-3 sentences. "
         ))
     )
 
