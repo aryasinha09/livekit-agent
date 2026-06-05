@@ -147,7 +147,7 @@ function VoiceUI() {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      gap: "20px",
+      gap: "12px",
       width: "100%",
       maxWidth: "650px",
     }}>
@@ -155,7 +155,7 @@ function VoiceUI() {
       <Timer />
 
       {/* Orb */}
-      <div style={{ position: "relative", width: "180px", height: "180px" }}>
+      <div style={{ position: "relative", width: "140px", height: "140px" }}>
         <div style={{
           position: "absolute", inset: "-8px", borderRadius: "50%",
           border: `3px solid transparent`,
