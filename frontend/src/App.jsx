@@ -13,7 +13,7 @@ import { RoomEvent } from "livekit-client";
 const serverUrl = "wss://my-voice-agnet-8s42tqg9.livekit.cloud";
 
 async function getToken() {
-  const response = await fetch("http://localhost:8000/token");
+  const response = await fetch("https://livekit-agent-fw98.onrender.com/token");
   const data = await response.json();
   return data.token;
 }
