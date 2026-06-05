@@ -323,7 +323,7 @@ export default function App() {
       fontFamily: "'Inter', 'Segoe UI', sans-serif",
       color: "white", gap: "12px", overflow: "hidden",
     }}>
-      <div style={{ textAlign: "center", marginBottom: "8px" }}>
+      <div style={{ textAlign: "center", marginBottom: "0px" }}>
         <div style={{
           display: "inline-flex", alignItems: "center", gap: "8px",
           background: "#ffffff0d", padding: "6px 16px",
@@ -334,7 +334,7 @@ export default function App() {
           ⚡ AI Powered
         </div>
         <h1 style={{
-          fontSize: "3rem", fontWeight: "800",
+          fontSize: "2rem", fontWeight: "800",
           background: "linear-gradient(135deg, #ffffff 0%, #a78bfa 50%, #7c3aed 100%)",
           WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
           margin: "0 0 8px 0",
