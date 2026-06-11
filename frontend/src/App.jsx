@@ -104,7 +104,7 @@ function VoiceUI() {
     <div style={{
       display: "flex", flexDirection: "column", alignItems: "center",
       gap: "10px", width: "100%", maxWidth: "650px",
-      padding: "0 16px", boxSizing: "border-box",
+      padding: "20px 16px 0 16px", boxSizing: "border-box",
     }}>
       {/* Header — inside VoiceUI */}
       <div style={{ textAlign: "center" }}>
