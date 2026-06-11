@@ -2,12 +2,17 @@
 
 A real-time AI voice assistant built with LiveKit, Groq, and Deepgram.
 
+<img width="1920" height="1080" alt="Screenshot 2026-06-11 083926" src="https://github.com/user-attachments/assets/d263bd24-3119-4f9f-8002-d4b6435e4ed9" />
+
+
+
 ## 🌐 Live Demo
 [https://livekit-agent-one.vercel.app/](https://livekit-agent-one.vercel.app/)
 
 ## ✨ Features
 - 🎙️ Real-time voice conversation with AI
 - 📝 Live transcript display
+
 - ⏱️ Conversation timer
 - 📥 Download conversation as HTML
 - 🌊 Animated voice visualizer
