@@ -103,12 +103,29 @@ function VoiceUI() {
   return (
     <div style={{
       display: "flex", flexDirection: "column", alignItems: "center",
-      gap: "12px", width: "100%", maxWidth: "650px",
+      gap: "10px", width: "100%", maxWidth: "650px",
       padding: "0 16px", boxSizing: "border-box",
     }}>
+      {/* Header — inside VoiceUI */}
+      <div style={{ textAlign: "center" }}>
+        <h1 style={{
+          fontSize: "clamp(1.2rem, 4vw, 2rem)",
+          fontWeight: "800",
+          background: "linear-gradient(135deg, #ffffff 0%, #a78bfa 50%, #7c3aed 100%)",
+          WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
+          margin: "0 0 4px 0", lineHeight: 1.2,
+        }}>
+          🎙️ Voice Assistant
+        </h1>
+        <p style={{ color: "#666", fontSize: "0.75rem", letterSpacing: "1px", margin: 0 }}>
+          LiveKit · Groq · Deepgram
+        </p>
+      </div>
+
       <Timer />
 
-      <div style={{ position: "relative", width: "140px", height: "140px", flexShrink: 0 }}>
+      {/* Orb */}
+      <div style={{ position: "relative", width: "130px", height: "130px", flexShrink: 0 }}>
         <div style={{
           position: "absolute", inset: "-8px", borderRadius: "50%",
           border: `3px solid transparent`,
@@ -125,37 +142,39 @@ function VoiceUI() {
           position: "absolute", inset: 0, borderRadius: "50%",
           background: `radial-gradient(circle at 35% 35%, ${currentColor}33, #0a0a0a)`,
           border: `2px solid ${currentColor}55`,
-          boxShadow: `0 0 80px ${currentColor}44`,
+          boxShadow: `0 0 60px ${currentColor}44`,
           display: "flex", alignItems: "center", justifyContent: "center",
           transition: "all 0.5s ease",
         }}>
-          <BarVisualizer state={state} trackRef={audioTrack} style={{ width: "70px", height: "35px" }} barCount={7} />
+          <BarVisualizer state={state} trackRef={audioTrack} style={{ width: "60px", height: "30px" }} barCount={7} />
         </div>
       </div>
 
+      {/* Status */}
       <div style={{
-        display: "flex", alignItems: "center", gap: "10px",
-        background: "#ffffff0d", padding: "6px 16px",
+        display: "flex", alignItems: "center", gap: "8px",
+        background: "#ffffff0d", padding: "6px 14px",
         borderRadius: "50px", border: `1px solid ${currentColor}44`,
       }}>
         <div style={{
-          width: "8px", height: "8px", borderRadius: "50%",
+          width: "7px", height: "7px", borderRadius: "50%",
           background: currentColor, boxShadow: `0 0 8px ${currentColor}`,
           animation: "pulse 1.5s infinite",
         }}/>
-        <span style={{ color: currentColor, fontSize: "0.75rem", letterSpacing: "2px", textTransform: "uppercase", fontWeight: "600" }}>
+        <span style={{ color: currentColor, fontSize: "0.72rem", letterSpacing: "2px", textTransform: "uppercase", fontWeight: "600" }}>
           {state === "listening" ? "Listening" : state === "speaking" ? "Speaking" : state === "thinking" ? "Thinking" : "Connecting"}
         </span>
       </div>
 
+      {/* Chat Box */}
       <div style={{
-        width: "100%", height: "180px", overflowY: "auto",
+        width: "100%", height: "170px", overflowY: "auto",
         background: "#ffffff06", border: "1px solid #ffffff10",
-        borderRadius: "20px", padding: "12px",
+        borderRadius: "16px", padding: "12px",
         display: "flex", flexDirection: "column", gap: "10px",
       }}>
         {messages.length === 0 ? (
-          <p style={{ color: "#444", fontSize: "0.8rem", textAlign: "center", marginTop: "60px" }}>
+          <p style={{ color: "#444", fontSize: "0.8rem", textAlign: "center", marginTop: "55px" }}>
             Conversation will appear here...
           </p>
         ) : (
@@ -168,7 +187,7 @@ function VoiceUI() {
                 background: msg.role === "user" ? "linear-gradient(135deg, #7c3aed44, #7c3aed22)" : "linear-gradient(135deg, #00f5a022, #00f5a011)",
                 border: `1px solid ${msg.role === "user" ? "#7c3aed66" : "#00f5a044"}`,
                 borderRadius: msg.role === "user" ? "18px 18px 4px 18px" : "18px 18px 18px 4px",
-                padding: "8px 12px", maxWidth: "80%", fontSize: "0.85rem",
+                padding: "8px 12px", maxWidth: "80%", fontSize: "0.82rem",
                 color: msg.role === "user" ? "#c4b5fd" : "#6ee7b7", lineHeight: 1.5,
                 opacity: msg.final ? 1 : 0.6,
               }}>
@@ -183,7 +202,7 @@ function VoiceUI() {
 
       {messages.length > 0 && (
         <button onClick={() => downloadPDF(messages)} style={{
-          padding: "8px 20px", fontSize: "0.8rem", fontWeight: "600",
+          padding: "7px 18px", fontSize: "0.78rem", fontWeight: "600",
           background: "linear-gradient(135deg, #1a1a2e, #16213e)",
           color: "#a78bfa", border: "1px solid #7c3aed55",
           borderRadius: "50px", cursor: "pointer", letterSpacing: "1px",
@@ -223,35 +242,31 @@ export default function App() {
       display: "flex", flexDirection: "column",
       alignItems: "center", justifyContent: "center",
       fontFamily: "'Inter', 'Segoe UI', sans-serif",
-      color: "white", gap: "8px", overflow: "hidden",
+      color: "white", overflow: "hidden",
       padding: "16px", boxSizing: "border-box",
     }}>
-      <div style={{ textAlign: "center" }}>
-        <div style={{
-          display: "inline-flex", alignItems: "center", gap: "6px",
-          background: "#ffffff0d", padding: "4px 12px",
-          borderRadius: "50px", border: "1px solid #ffffff15",
-          marginBottom: "8px", fontSize: "0.7rem", color: "#888",
-          letterSpacing: "2px", textTransform: "uppercase",
-        }}>
-          ⚡ AI Powered
-        </div>
-        <h1 style={{
-          fontSize: "clamp(1.4rem, 5vw, 2.5rem)",
-          fontWeight: "800",
-          background: "linear-gradient(135deg, #ffffff 0%, #a78bfa 50%, #7c3aed 100%)",
-          WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
-          margin: "0 0 4px 0", lineHeight: 1.2,
-        }}>
-          Voice Assistant
-        </h1>
-        <p style={{ color: "#666", fontSize: "0.8rem", letterSpacing: "1px", margin: 0 }}>
-          LiveKit · Groq · Deepgram
-        </p>
-      </div>
-
       {!token ? (
         <div style={{ textAlign: "center" }}>
+          <div style={{
+            display: "inline-flex", alignItems: "center", gap: "6px",
+            background: "#ffffff0d", padding: "4px 12px",
+            borderRadius: "50px", border: "1px solid #ffffff15",
+            marginBottom: "12px", fontSize: "0.7rem", color: "#888",
+            letterSpacing: "2px", textTransform: "uppercase",
+          }}>
+            ⚡ AI Powered
+          </div>
+          <h1 style={{
+            fontSize: "clamp(1.8rem, 6vw, 3rem)", fontWeight: "800",
+            background: "linear-gradient(135deg, #ffffff 0%, #a78bfa 50%, #7c3aed 100%)",
+            WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
+            margin: "0 0 8px 0",
+          }}>
+            Voice Assistant
+          </h1>
+          <p style={{ color: "#666", fontSize: "0.85rem", letterSpacing: "1px", marginBottom: "24px" }}>
+            LiveKit · Groq · Deepgram
+          </p>
           <button
             onClick={handleConnect}
             disabled={connecting}
@@ -261,12 +276,12 @@ export default function App() {
               color: "white", border: "none", borderRadius: "50px",
               cursor: connecting ? "not-allowed" : "pointer",
               boxShadow: connecting ? "none" : "0 8px 32px #7c3aed55",
-              transition: "all 0.3s ease",
+              transition: "all 0.3s ease", display: "block", margin: "0 auto",
             }}
           >
             {connecting ? "⏳ Connecting..." : "🎙️ Start Conversation"}
           </button>
-          <p style={{ color: "#444", fontSize: "0.75rem", marginTop: "8px" }}>
+          <p style={{ color: "#444", fontSize: "0.75rem", marginTop: "10px" }}>
             Allow microphone access when prompted
           </p>
         </div>
